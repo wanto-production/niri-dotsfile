@@ -1,0 +1,314 @@
+// Niri Configuration - Ported from Hyprland config
+// Save this as ~/.config/niri/config.kdl
+
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+        repeat-delay 600
+        repeat-rate 25
+    }
+    
+    touchpad {
+        tap
+        dwt
+        natural-scroll
+        accel-speed 0.2
+    }
+    
+    mouse {
+        accel-speed 0.0
+        accel-profile "flat"
+    }
+    
+}
+
+output "eDP-1" {
+    mode "1920x1080@60"
+    scale 1.0
+    position x=0 y=0
+}
+
+layout {
+    // Gaps similar to Hyprland config (5px inside, 10px outside)
+    gaps 5
+    
+    center-focused-column "on-overflow"
+    
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+    
+    default-column-width { proportion 1.0; }
+    
+    focus-ring {
+        width 1
+        active-color "#b4befe" // Lavender accent
+        inactive-color "#45475a" // Gray
+
+        // Gradient effect
+        active-gradient from="#b4befe" to="#89b4fa" angle=45 relative-to="workspace-view"
+    }
+    
+    border {
+        width 1
+        active-color "#b4befe" // Lavender
+        inactive-color "#45475a" // Gray
+        
+        // Gradient for active border
+        active-gradient from="#b4befe" to="#89b4fa" angle=45 relative-to="workspace-view"
+    }
+    
+    struts {
+        left 0
+        right 0
+        top 0
+        bottom 0
+    }
+}
+
+// Set the overview wallpaper on the backdrop.
+layer-rule {
+  match namespace="^noctalia-overview*"
+  place-within-backdrop true
+}
+
+// Window rules equivalent to Hyprland
+window-rule {
+    match app-id="^thunar$"
+    default-column-width { proportion 1.0; }
+}
+
+window-rule {
+    match app-id="^brave-browser$"
+    default-column-width { proportion 1.0; }
+}
+
+window-rule {
+    match app-id="^org.vinegarhq.Sober$"
+    default-column-width { proportion 1.0; }
+}
+
+window-rule {
+    match app-id="^kitty$"
+    default-column-width { proportion 1.0; }
+}
+
+// Floating windows (Niri handles this differently)
+window-rule {
+    match app-id="^(pavucontrol|blueberry.py|nm-connection-editor)$"
+    default-column-width { fixed 800; }
+}
+
+// Cursor configuration
+window-rule {
+  geometry-corner-radius 5
+  clip-to-geometry true
+}
+
+// Animation settings (similar to Hyprland's bezier curves)
+animations {
+    slowdown 1.0
+    
+    // window-open {
+    //     duration-ms 150
+    //     curve "ease-in-expo"
+    // }
+    //
+    // window-close {
+    //     duration-ms 150
+    //     curve "ease-in-expo"
+    // }
+    //
+    // window-movement {
+    //     duration-ms 200
+    //     curve "ease-in-expo"
+    // }
+    //
+    // workspace-switch {
+    //     duration-ms 200
+    //     curve "ease-in-expo"
+    // }
+    //
+    // horizontal-view-movement {
+    //     duration-ms 200
+    //     curve "ease-in-expo"
+    // }
+    //
+    // window-resize {
+    //     duration-ms 150
+    //     curve "ease-in-expo"
+    // }
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/screenshot-%Y-%m-%d-%H-%M-%S.png"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+environment {
+    // XDG
+    XDG_CURRENT_DESKTOP "niri"
+    XDG_SESSION_TYPE "wayland"
+    XDG_SESSION_DESKTOP "niri"
+    
+    // QT
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    QT_AUTO_SCREEN_SCALE_FACTOR "1"
+    
+    // Toolkit
+    GDK_BACKEND "wayland,x11"
+    SDL_VIDEODRIVER "wayland"
+    CLUTTER_BACKEND "wayland"
+    
+    // Firefox
+    MOZ_ENABLE_WAYLAND "1"
+}
+
+// Keybindings - Ported from Hyprland config
+binds {
+    
+    // Terminal
+    Mod+Return hotkey-overlay-title="Open Terminal" { spawn "kitty"; }
+    
+    // Applications
+    Mod+E hotkey-overlay-title="File Manager" { spawn "app2unit" "--" "nautilus"; }
+    Mod+B hotkey-overlay-title="Browser" { spawn "app2unit" "--" "brave"; }
+    Mod+V hotkey-overlay-title="Clipboard Manager" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+    Mod+R hotkey-overlay-title="Application Launcher" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    
+    // Window management
+    Mod+Q hotkey-overlay-title="Close Window" { close-window; }
+    Mod+F hotkey-overlay-title="Fullscreen Window" { fullscreen-window; }
+    Mod+Shift+F hotkey-overlay-title="Maximize Column" { maximize-column; }
+    Mod+T hotkey-overlay-title="Focus Floating Windows" { focus-floating; }
+    Mod+C hotkey-overlay-title="Center Column" { center-column; }
+    
+    // Focus movement (Vi-style)
+    Mod+H hotkey-overlay-title="Focus Left" { focus-column-left; }
+    Mod+L hotkey-overlay-title="Focus Right" { focus-column-right; }
+    Mod+J hotkey-overlay-title="Focus Down" { focus-window-down; }
+    Mod+K hotkey-overlay-title="Focus Up" { focus-window-up; }
+    
+    // Focus movement (Arrow keys)
+    Mod+Left hotkey-overlay-title="Focus Left" { focus-column-left; }
+    Mod+Right hotkey-overlay-title="Focus Right" { focus-column-right; }
+    Mod+Down hotkey-overlay-title="Focus Down" { focus-window-down; }
+    Mod+Up hotkey-overlay-title="Focus Up" { focus-window-up; }
+    
+    // Window movement (Vi-style)
+    Mod+Shift+H hotkey-overlay-title="Move Window Left" { move-column-left; }
+    Mod+Shift+L hotkey-overlay-title="Move Window Right" { move-column-right; }
+    Mod+Shift+J hotkey-overlay-title="Move Window Down" { move-window-down; }
+    Mod+Shift+K hotkey-overlay-title="Move Window Up" { move-window-up; }
+    
+    // Window movement (Arrow keys)
+    Mod+Shift+Left hotkey-overlay-title="Move Window Left" { move-column-left; }
+    Mod+Shift+Right hotkey-overlay-title="Move Window Right" { move-column-right; }
+    Mod+Shift+Down hotkey-overlay-title="Move Window Down" { move-window-down; }
+    Mod+Shift+Up hotkey-overlay-title="Move Window Up" { move-window-up; }
+    
+    // Window resizing (Vi-style)
+    Mod+Ctrl+H hotkey-overlay-title="Decrease Width" { set-column-width "-10%"; }
+    Mod+Ctrl+L hotkey-overlay-title="Increase Width" { set-column-width "+10%"; }
+    Mod+Ctrl+K hotkey-overlay-title="Increase Height" { set-window-height "+10%"; }
+    Mod+Ctrl+J hotkey-overlay-title="Decrease Height" { set-window-height "-10%"; }
+    
+    // Window resizing (Arrow keys)
+    Mod+Ctrl+Left hotkey-overlay-title="Decrease Width" { set-column-width "-10%"; }
+    Mod+Ctrl+Right hotkey-overlay-title="Increase Width" { set-column-width "+10%"; }
+    Mod+Ctrl+Up hotkey-overlay-title="Increase Height" { set-window-height "+10%"; }
+    Mod+Ctrl+Down hotkey-overlay-title="Decrease Height" { set-window-height "-10%"; }
+    
+    // Window float
+    Mod+Alt+Space { toggle-window-floating; }
+   
+    // Workspace switching
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10; }
+    
+    // Move window to workspace
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+    Mod+Shift+0 { move-column-to-workspace 10; }
+    
+    // Cycle workspaces
+    Mod+Tab { focus-workspace-down; }
+    Mod+Shift+Tab { focus-workspace-up; }
+    Mod+WheelScrollDown { focus-workspace-down; }
+    Mod+WheelScrollUp { focus-workspace-up; }
+    
+    // Scratchpad (using workspace 11 as scratchpad)
+    Mod+S hotkey-overlay-title="Toggle Scratchpad" { focus-workspace 11; }
+    Mod+Shift+S hotkey-overlay-title="Send to Scratchpad" { move-column-to-workspace 11; }
+    
+    // Screenshots
+    Print hotkey-overlay-title="Screenshot" { screenshot; }
+    Shift+Print hotkey-overlay-title="Screenshot Window" { screenshot-window; }
+    Ctrl+Print hotkey-overlay-title="Screenshot to Clipboard" { screenshot; }
+    Mod+Print hotkey-overlay-title="Screenshot Window" { screenshot-window; }
+    
+    // Session management
+    Mod+Shift+Q hotkey-overlay-title="Session Menu" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
+    
+    // Wallpaper
+    Mod+W hotkey-overlay-title="Wallpaper Picker" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
+    Mod+Shift+W hotkey-overlay-title="Random Wallpaper" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "wallpaper" "random"; }
+    
+    // Media controls
+    XF86AudioRaiseVolume hotkey-overlay-title="Volume Up" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    XF86AudioLowerVolume hotkey-overlay-title="Volume Down" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    XF86AudioMute hotkey-overlay-title="Toggle Mute" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+    XF86AudioMicMute hotkey-overlay-title="Toggle Mic Mute" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
+    XF86AudioPlay hotkey-overlay-title="Play/Pause" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "playPause"; }
+    XF86AudioPause hotkey-overlay-title="Play/Pause" { spawn "playerctl" "play-pause"; }
+    XF86AudioNext hotkey-overlay-title="Next Track" { spawn "playerctl" "next"; }
+    XF86AudioPrev hotkey-overlay-title="Previous Track" { spawn "playerctl" "previous"; }
+    Mod+Shift+P hotkey-overlay-title="Play/Pause Media" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "media" "playPause"; }
+    
+    // Niri specific
+    Mod+Shift+R hotkey-overlay-title="Reload Config" { spawn "niri" "msg" "action" "reload-config"; }
+    Mod+Shift+O hotkey-overlay-title="Toggle Overview" { toggle-overview; }
+    Mod+Slash hotkey-overlay-title="Show All Keybinds" { 
+        show-hotkey-overlay; 
+    }
+}
+
+// Startup applications
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "trash-empty" "30"
+spawn-at-startup "qs" "-c" "noctalia-shell" "-d"
+
+debug {
+  honor-xdg-activation-with-invalid-serial
+  render-drm-device "/dev/dri/renderD128"
+}
+
+cursor {
+  xcursor-theme "catppuccin-mocha-lavender-cursors"
+}
