@@ -171,6 +171,7 @@ environment {
     
     // Firefox
     MOZ_ENABLE_WAYLAND "1"
+    DISPLAY ":1"
 }
 
 // Keybindings - Ported from Hyprland config
