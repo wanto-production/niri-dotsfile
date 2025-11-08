@@ -32,7 +32,7 @@ output "eDP-1" {
 
 layout {
     // Gaps similar to Hyprland config (5px inside, 10px outside)
-    gaps 5
+    gaps 8
     
     center-focused-column "on-overflow"
     
@@ -105,7 +105,7 @@ window-rule {
 
 // Cursor configuration
 window-rule {
-  geometry-corner-radius 5
+  geometry-corner-radius 14
   clip-to-geometry true
 }
 
