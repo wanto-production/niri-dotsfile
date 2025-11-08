@@ -32,7 +32,7 @@ output "eDP-1" {
 
 layout {
     // Gaps similar to Hyprland config (5px inside, 10px outside)
-    gaps 8
+    gaps 6
     
     center-focused-column "on-overflow"
     
@@ -54,7 +54,7 @@ layout {
     }
     
     border {
-        width 1
+        width 1.5
         active-color "#b4befe" // Lavender
         inactive-color "#45475a" // Gray
         
@@ -105,7 +105,7 @@ window-rule {
 
 // Cursor configuration
 window-rule {
-  geometry-corner-radius 14
+  geometry-corner-radius 5
   clip-to-geometry true
 }
 
