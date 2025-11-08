@@ -76,10 +76,105 @@ layer-rule {
   place-within-backdrop true
 }
 
-// Window rules equivalent to Hyprland
 window-rule {
-    match app-id="^thunar$"
+    match app-id="guifetch"
+    default-column-width {}
+    open-floating true
+}
+
+window-rule {
+    match app-id="yad"
+    open-floating true
+}
+
+window-rule {
+    match app-id="zenity"
+    open-floating true
+}
+
+window-rule {
+    match app-id="wev"
+    open-floating true
+}
+
+window-rule {
+    match app-id="org.gnome.FileRoller"
+    open-floating true
+}
+
+window-rule {
+    match app-id="file-roller"
+    open-floating true
+}
+
+window-rule {
+    match app-id="system-config-printer"
+    open-floating true
+}
+
+window-rule {
+    match app-id="org.pulseaudio.pavucontrol"
     default-column-width { proportion 1.0; }
+    open-floating true
+}
+
+window-rule {
+    match app-id="yad-icon-browser"
+    default-column-width { proportion 1.0; }
+    open-floating true
+}
+
+window-rule {
+    match app-id="nwg-look"
+    default-column-width { proportion 1.0; }
+    open-floating true
+}
+
+window-rule {
+    match app-id="com.github.wwmm.easyeffects"
+    default-column-width { proportion 1.0; }
+    open-floating true
+}
+
+window-rule {
+    match app-id="hyprland-share-picker"
+    open-floating true
+}
+
+// Dialog rules
+window-rule {
+    match title="^(Select|Open)( a)? (File|Folder)(s)?$"
+    open-floating true
+}
+
+window-rule {
+    match title="^File (Operation|Upload)( Progress)?$"
+    open-floating true
+}
+
+window-rule {
+    match title="Properties$"
+    open-floating true
+}
+
+window-rule {
+    match title="^Export Image as PNG$"
+    open-floating true
+}
+
+window-rule {
+    match title="^GIMP Crash Debug$"
+    open-floating true
+}
+
+window-rule {
+    match title="^Save As$"
+    open-floating true
+}
+
+window-rule {
+    match title="^Library$"
+    open-floating true
 }
 
 window-rule {
