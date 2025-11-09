@@ -206,18 +206,18 @@ window-rule {
 
 // Animation settings (similar to Hyprland's bezier curves)
 animations {
-    slowdown 1.0
+    //slowdown 1.0
     
-    // window-open {
-    //     duration-ms 150
-    //     curve "ease-in-expo"
-    // }
-    //
-    // window-close {
-    //     duration-ms 150
-    //     curve "ease-in-expo"
-    // }
-    //
+    window-open {
+        duration-ms 150
+        curve "ease-out-expo"
+    }
+    
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+    
     // window-movement {
     //     duration-ms 200
     //     curve "ease-in-expo"
