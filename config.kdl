@@ -132,16 +132,11 @@ window-rule {
 
 window-rule {
     match app-id="com.github.wwmm.easyeffects"
-    default-column-width { proportion 1.0; }
+    default-column-width { proportion 0.5; }
+    default-window-height { fixed 600; }
     open-floating true
 }
 
-window-rule {
-    match app-id="hyprland-share-picker"
-    open-floating true
-}
-
-// Dialog rules
 window-rule {
     match title="^(Select|Open)( a)? (File|Folder)(s)?$"
     open-floating true
@@ -194,7 +189,7 @@ window-rule {
 
 // Floating windows (Niri handles this differently)
 window-rule {
-    match app-id="^(pavucontrol|blueberry.py|nm-connection-editor)$"
+    match app-id="^(blueberry.py|nm-connection-editor)$"
     default-column-width { fixed 800; }
 }
 
