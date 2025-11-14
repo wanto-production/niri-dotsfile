@@ -382,7 +382,7 @@ binds {
     
     // Niri specific
     Mod+Shift+R hotkey-overlay-title="Reload Config" { spawn "niri" "msg" "action" "reload-config"; }
-    Mod+Shift+O hotkey-overlay-title="Toggle Overview" { toggle-overview; }
+    F11 hotkey-overlay-title="Toggle Overview" { toggle-overview; }
     Mod+Slash hotkey-overlay-title="Show All Keybinds" { 
         show-hotkey-overlay; 
     }
